@@ -1,0 +1,30 @@
+<section id="demo" class="darklue" style="padding: 50px; min-height: 100vh;">
+  <div class="container-fluid" style="padding: 20px; ">
+    <div class="row">
+      <div class="col-6">
+        <button (click)="addWidget()" *ngIf="editEnabled"  class="btn btn-warning m-2">Add Widget</button>
+      </div>
+      <div class="col-6 text-right">
+        <button (click)="saveWidgetBox()" *ngIf="editEnabled" class="btn btn-success m-2">Save Widget State</button>
+        <button (click)="loadWidgetBox()" *ngIf="editEnabled && false" class="btn btn-danger m-2">Load Saved State</button>
+        <button (click)="editToggle()" class="btn btn-primary m-2">Toggle Editing</button>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+
+    <div gridStackElement class="grid-stack" data-gs-width="12" data-gs-animate="yes">
+      <div *ngFor="let widget of widgets; index as i;" [id]="'gsi-'+i" [attr.data-gs-height]="widget.height"
+           [attr.data-gs-width]="widget.width" [attr.data-gs-x]="widget.x" [attr.data-gs-y]="widget.y"
+           class="grid-stack-item" [attr.data-gs-auto-position]="widget.autoPosition">
+        <div class="grid-stack-item-content">
+          <h4>{{i}}</h4>
+          <app-first *ngIf="i%2 != 0"></app-first>
+          <app-second *ngIf="i%2 == 0"></app-second>
+          <app-third *ngIf="i%2 == 0"></app-third>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
